@@ -56,6 +56,7 @@ import org.apache.xmlbeans.XmlError;
 import org.apache.xmlbeans.XmlOptions;
 import org.jdom.Document;
 import org.jdom.Element;
+import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -163,12 +164,23 @@ public class GatewayConfigParser {
         File translatedConfigFile = writeTranslatedFile ?
                 new File(configFile.getParent(), configFile.getName()
                 + TRANSLATED_CONFIG_FILE_EXT) : configFile;
-
+        convertTLStoSSL(root);
         translate(namespace, dom, translatedConfigFile, writeTranslatedFile);
 
         return translatedConfigFile;
     }
-
+    
+    private void convertTLStoSSL(Element root) {
+        Namespace namespace = root.getNamespace();
+        List<Element> children = root.getChildren("service", namespace);
+        for (Element child : children) {
+            List<Element> acceptChild = child.getChildren("accept", namespace);
+            List<Element> connectChild = child.getChildren("connect", namespace);
+            List<Element> acceptOptionsChild = child.getChildren("accept-options", namespace);
+            List<Element> connectOptionsChild = child.getChildren("connect-options", namespace);
+        }
+    }
+    
     /**
      * Parse and validate a gateway configuration file.
      *
