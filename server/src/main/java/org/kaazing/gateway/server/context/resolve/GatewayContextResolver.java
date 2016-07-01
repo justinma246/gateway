@@ -299,6 +299,7 @@ public class GatewayContextResolver {
         Set<String> schemeNames = new HashSet<>();
         for (ServiceContext serviceContext : serviceContexts) {
             for (String acceptURI : serviceContext.getAccepts()) {
+                System.out.println("acceptURI: " + acceptURI);
                 String schemeName = getScheme(acceptURI);
                 schemeNames.add(schemeName);
             }
@@ -357,6 +358,7 @@ public class GatewayContextResolver {
         // resolve schemes
         Map<String, DefaultSchemeContext> schemeContexts = new HashMap<>();
         for (String schemeName : schemeNames) {
+            System.out.println("SCHEMENAME for loop: " + schemeName);
             DefaultSchemeContext schemeContext = schemeContexts.get(schemeName);
             if (schemeContext == null) {
                 SchemeConfig schemeConfig = supplySchemeConfig(schemeName);
@@ -1110,6 +1112,7 @@ public class GatewayContextResolver {
     private DefaultSchemeConfig findSchemeConfig(String schemeName) {
         String packageName = Gateway.class.getPackage().getName();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        System.out.println("schemeName passed to findSchemeConfig: " + schemeName);
         URL resource = classLoader.getResource("META-INF/services/" + packageName.replace('.', '/') + "/scheme/" + schemeName);
         if (resource != null) {
             try {

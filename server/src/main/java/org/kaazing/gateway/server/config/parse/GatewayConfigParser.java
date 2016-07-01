@@ -192,8 +192,7 @@ public class GatewayConfigParser {
                     child.setText(content);
                 }
             }
-        }
-        
+        } 
     }
 
     /**
