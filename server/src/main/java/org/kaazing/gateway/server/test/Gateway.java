@@ -382,6 +382,9 @@ public class Gateway {
             String[] newAccepts = new String[accepts.size()];
             int i = 0;
             for (String accept : accepts) {
+                if (accept.contains("tls://")) {
+                    accept = accept.replace("tls://", "ssl://");
+                }
                 newAccepts[i++] = accept;
             }
             newService.setAcceptArray(newAccepts);
@@ -559,7 +562,7 @@ public class Gateway {
         Collection<String> accepts = cluster.getAccepts();
         Collection<String> connects = cluster.getConnects();
 
-        for (String accept : accepts) {
+        for (String accept : accepts) { 
             newCluster.addAccept(accept);
         }
 

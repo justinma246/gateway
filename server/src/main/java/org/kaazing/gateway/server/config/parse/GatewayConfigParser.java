@@ -178,9 +178,24 @@ public class GatewayConfigParser {
             List<Element> connectChild = child.getChildren("connect", namespace);
             List<Element> acceptOptionsChild = child.getChildren("accept-options", namespace);
             List<Element> connectOptionsChild = child.getChildren("connect-options", namespace);
+            convertToSSL(acceptChild, connectChild, acceptOptionsChild, connectOptionsChild);
         }
     }
-    
+
+    private void convertToSSL(List<Element> acceptChild, List<Element> connectChild,
+            List<Element> acceptOptionsChild, List<Element> connectOptionsChild) {
+        if (!acceptChild.isEmpty()) {
+            for (Element child : acceptChild) {
+                String content = child.getText();
+                if (content.contains("tls://")) {
+                    content = content.replace("tls://", "ssl://");
+                    child.setText(content);
+                }
+            }
+        }
+        
+    }
+
     /**
      * Parse and validate a gateway configuration file.
      *
