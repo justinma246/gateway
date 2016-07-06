@@ -299,7 +299,6 @@ public class GatewayContextResolver {
         Set<String> schemeNames = new HashSet<>();
         for (ServiceContext serviceContext : serviceContexts) {
             for (String acceptURI : serviceContext.getAccepts()) {
-                System.out.println("acceptURI: " + acceptURI);
                 String schemeName = getScheme(acceptURI);
                 schemeNames.add(schemeName);
             }
@@ -319,7 +318,7 @@ public class GatewayContextResolver {
                 schemeNames.add(new URI(connect).getScheme());
             }
         }
-
+        
         // Make sure that presence of ws(s) automatically implies presence of http(s) even if there are no accepts or connects
         // with that scheme.
         if (schemeNames.contains("ws")) {
@@ -358,7 +357,6 @@ public class GatewayContextResolver {
         // resolve schemes
         Map<String, DefaultSchemeContext> schemeContexts = new HashMap<>();
         for (String schemeName : schemeNames) {
-            System.out.println("SCHEMENAME for loop: " + schemeName);
             DefaultSchemeContext schemeContext = schemeContexts.get(schemeName);
             if (schemeContext == null) {
                 SchemeConfig schemeConfig = supplySchemeConfig(schemeName);
@@ -495,7 +493,7 @@ public class GatewayContextResolver {
 
             ServicePropertiesType propertiesType = serviceConfig.getProperties();
             DefaultServiceProperties properties = parsePropertiesType(propertiesType);
-
+            
             // default ports
             Collection<String> acceptURIs = resolveURIs(acceptStrings);
             Collection<String> balanceURIs = resolveURIs(balanceStrings);
@@ -1112,7 +1110,6 @@ public class GatewayContextResolver {
     private DefaultSchemeConfig findSchemeConfig(String schemeName) {
         String packageName = Gateway.class.getPackage().getName();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        System.out.println("schemeName passed to findSchemeConfig: " + schemeName);
         URL resource = classLoader.getResource("META-INF/services/" + packageName.replace('.', '/') + "/scheme/" + schemeName);
         if (resource != null) {
             try {

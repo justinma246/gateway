@@ -302,6 +302,7 @@ final class GatewayImpl implements Gateway {
         GatewayConfigDocument config = parser.parse(gatewayConfigFile);
         GatewayContextResolver resolver = new GatewayContextResolver(configDir, webRootDir, tempDir, jmxMBeanServer);
         gatewayObserver.initingGateway(configuration, resolver.getInjectables());
+        System.out.println("fails at resolve");
         GatewayContext context = resolver.resolve(config, configuration);
 
         gateway = new Launcher(gatewayObserver);

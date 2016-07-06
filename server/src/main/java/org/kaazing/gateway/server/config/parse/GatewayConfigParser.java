@@ -122,7 +122,8 @@ public class GatewayConfigParser {
 
         GatewayConfigTranslator translator = GatewayConfigTranslatorFactory.newInstance().getTranslator(ns);
         translator.translate(dom);
-
+        
+        System.out.println("writeTranslatedFile: " + writeTranslatedFile);
         if (writeTranslatedFile) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             BufferedOutputStream bos = new BufferedOutputStream(baos);
@@ -164,13 +165,13 @@ public class GatewayConfigParser {
         File translatedConfigFile = writeTranslatedFile ?
                 new File(configFile.getParent(), configFile.getName()
                 + TRANSLATED_CONFIG_FILE_EXT) : configFile;
-        convertTLStoSSL(root);
+        //convertTLStoSSL(root);
         translate(namespace, dom, translatedConfigFile, writeTranslatedFile);
 
         return translatedConfigFile;
     }
     
-    private void convertTLStoSSL(Element root) {
+    /*private void convertTLStoSSL(Element root) {
         Namespace namespace = root.getNamespace();
         List<Element> children = root.getChildren("service", namespace);
         for (Element child : children) {
@@ -193,7 +194,7 @@ public class GatewayConfigParser {
                 }
             }
         } 
-    }
+    }*/
 
     /**
      * Parse and validate a gateway configuration file.
