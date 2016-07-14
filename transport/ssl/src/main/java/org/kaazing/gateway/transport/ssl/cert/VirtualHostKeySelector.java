@@ -156,8 +156,8 @@ public class VirtualHostKeySelector
     @Override
     public void init(KeyStore keyStore, char[] keyStorePassword)
         throws KeyStoreException {
+
         if (keyStore == null) {
-            System.out.println("the keystore is null");
             return;
         }
 

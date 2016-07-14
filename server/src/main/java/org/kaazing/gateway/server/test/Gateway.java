@@ -562,7 +562,7 @@ public class Gateway {
         Collection<String> accepts = cluster.getAccepts();
         Collection<String> connects = cluster.getConnects();
 
-        for (String accept : accepts) { 
+        for (String accept : accepts) {
             newCluster.addAccept(accept);
         }
 

@@ -117,10 +117,10 @@ public class GatewayConfigParser {
     private void translate(final GatewayConfigNamespace ns, final Document dom,
             final File translatedConfigFile, boolean writeTranslatedFile) throws Exception {
 
-        GatewayConfigTranslator translator = GatewayConfigTranslatorFactory.newInstance().getTranslator(ns);
+        GatewayConfigTranslator translator = GatewayConfigTranslatorFactory.newInstance().
+                getTranslator(ns);
         translator.translate(dom);
-        
-        System.out.println("writeTranslatedFile: " + writeTranslatedFile);
+
         if (writeTranslatedFile) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             BufferedOutputStream bos = new BufferedOutputStream(baos);

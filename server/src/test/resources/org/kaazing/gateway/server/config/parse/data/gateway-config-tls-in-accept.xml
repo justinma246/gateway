@@ -45,7 +45,7 @@
   </properties>
 
 
-  <service>
+  <!--<service>
     <name>welcome-directory</name>
     <description>Directory service for welcome page</description>
     <accept>http://${gateway.hostname}:${gateway.port}/</accept>
@@ -62,14 +62,14 @@
         <cache-control>max-age=0</cache-control>
       </location>
     </properties>
-  </service>
+  </service>-->
 
 
 
   <service> <!-- KG-10018 test case -->
     <name>proxy</name>
     <accept>tls://localhost:8001</accept>
-    <connect>ws://localhost:8001</connect>
+    <!--<connect>ws://localhost:8001</connect>-->
     <type>proxy</type>
   </service>
 

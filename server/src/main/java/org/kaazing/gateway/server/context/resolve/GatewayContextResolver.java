@@ -318,7 +318,7 @@ public class GatewayContextResolver {
                 schemeNames.add(new URI(connect).getScheme());
             }
         }
-        
+
         // Make sure that presence of ws(s) automatically implies presence of http(s) even if there are no accepts or connects
         // with that scheme.
         if (schemeNames.contains("ws")) {
@@ -496,7 +496,7 @@ public class GatewayContextResolver {
 
             ServicePropertiesType propertiesType = serviceConfig.getProperties();
             DefaultServiceProperties properties = parsePropertiesType(propertiesType);
-            
+
             // default ports
             Collection<String> acceptURIs = resolveURIs(acceptStrings);
             Collection<String> balanceURIs = resolveURIs(balanceStrings);
@@ -526,7 +526,6 @@ public class GatewayContextResolver {
                 realmContext = realmsContext.getRealmContext(name);
                 if (realmContext != null && !name.equals("auth-required")) {
                     if (requireRolesCollection.isEmpty()) {
-                        System.out.println("added");
                         Collections.addAll(requireRolesCollection, "*");
                     }
                 }

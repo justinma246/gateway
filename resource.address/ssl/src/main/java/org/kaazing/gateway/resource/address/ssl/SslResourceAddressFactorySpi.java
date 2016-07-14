@@ -103,7 +103,6 @@ public class SslResourceAddressFactorySpi extends ResourceAddressFactorySpi<SslR
     
     @Override
     protected SslResourceAddress newResourceAddress0(String original, String location) {
-        
         URI uriLocation = URI.create(location);
         String path = uriLocation.getPath();
 
