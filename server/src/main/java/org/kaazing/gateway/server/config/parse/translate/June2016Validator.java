@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kaazing.gateway.util.feature;
 
-/**
- * Specifies new features which are being released as early access features.
- */
-public interface EarlyAccessFeatures {
+package org.kaazing.gateway.server.config.parse.translate;
 
-    EarlyAccessFeature HTTP_PROXY_SERVICE = new EarlyAccessFeature("http.proxy", "HTTP Proxy Service", false);
-    EarlyAccessFeature WSN_302_REDIRECT = new EarlyAccessFeature("wsn.302.redirect", "Send redirect for wsn via 302", false);
-    EarlyAccessFeature WSX_302_REDIRECT = new EarlyAccessFeature("wsx.302.redirect", "Send redirect for wsx via 302", false);
+import org.kaazing.gateway.server.config.parse.translate.june2016.RemoveRequireUser;
 
+public class June2016Validator extends GatewayConfigTranslatorPipeline {
+
+    public June2016Validator() {
+        super();
+        
+        // Set the namespace
+        addTranslator(new RemoveRequireUser());   
+    }
 }
