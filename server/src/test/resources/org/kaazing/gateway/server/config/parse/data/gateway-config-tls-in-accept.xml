@@ -70,7 +70,7 @@
     <name>proxy</name>
     <accept>tls://localhost:8001</accept>
     <!--<connect>ws://localhost:8001</connect>-->
-    <type>proxy</type>
+    <type>echo</type>
   </service>
 
   <security>
