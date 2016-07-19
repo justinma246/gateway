@@ -16,9 +16,6 @@
 
 package org.kaazing.gateway.server.config.parse.translate;
 
-import org.kaazing.gateway.server.config.parse.translate.june2016.FindMatchingAuthConstraint;
-import org.kaazing.gateway.server.config.parse.translate.june2016.RemoveRealmVisitor;
-
 public class June2016Validator extends GatewayConfigTranslatorPipeline {
 
     public June2016Validator() {
@@ -26,6 +23,5 @@ public class June2016Validator extends GatewayConfigTranslatorPipeline {
         
         // Ensures that each realm is accompanied by an authorization constraint, otherwise
         // it should not exist.
-        addTranslator(new FindMatchingAuthConstraint());
     }
 }
