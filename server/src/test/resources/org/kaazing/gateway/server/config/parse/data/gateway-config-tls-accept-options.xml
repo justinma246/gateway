@@ -30,11 +30,13 @@
   #############################################################################
   -->
 
-  <service> <!-- KG-10018 test case -->
+  <service> 
     <name>proxy</name>
-    <accept>ws://localhost:8001</accept>
-    <connect>tls://localhost:8001</connect>
+    <accept>wss://localhost:8001</accept>
     <type>echo</type>
+    <accept-options>
+    	<tls.ciphers>DEFAULT</tls.ciphers>
+    </accept-options>
   </service>
 
   <security>

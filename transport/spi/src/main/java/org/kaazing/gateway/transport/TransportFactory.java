@@ -101,7 +101,6 @@ public class TransportFactory {
 
         for (TransportFactorySpi transportFactory : transportFactories) {
             String transportName = transportFactory.getTransportName();
-            System.out.println("transportName: " + transportName);
             if (transportsByName.containsKey(transportName)) {
                 throw new RuntimeException(format("Duplicate transport name transport factory: %s", transportName));
             }

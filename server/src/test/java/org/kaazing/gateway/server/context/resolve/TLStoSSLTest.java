@@ -18,9 +18,11 @@ package org.kaazing.gateway.server.context.resolve;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyStore;
 import java.text.MessageFormat;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +32,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.kaazing.gateway.server.test.Gateway;
+import org.kaazing.gateway.server.test.config.GatewayConfiguration;
+import org.kaazing.gateway.server.test.config.builder.GatewayConfigurationBuilder;
 import org.kaazing.gateway.server.config.june2016.GatewayConfigDocument;
 import org.kaazing.gateway.server.config.parse.GatewayConfigParser;
 
@@ -54,9 +59,9 @@ public class TLStoSSLTest {
             resolver = new GatewayContextResolver(new File(keyStoreFile.getParent()), null, null);
         } catch (Exception ex) {
             Assert.fail("Failed to load keystore.db, unable to init test due to exception: " + ex);
-        }
+        }  
     }
-    
+
     @Before
     public void setAllowedServices() throws Exception {
         Set<String> serviceList = new HashSet<>();
@@ -124,9 +129,9 @@ public class TLStoSSLTest {
     }
     
     @Test
-    public void parseAndResolveTLSinConnect() throws Exception {
+    public void parseAndResolveTLSAcceptOptions() throws Exception {
         configFile = createTempFileFromResource(
-                "org/kaazing/gateway/server/config/parse/data/gateway-config-tls-in-connect.xml");
+                "org/kaazing/gateway/server/config/parse/data/gateway-config-tls-accept-options.xml");
         GatewayConfigDocument doc = parser.parse(configFile);
         Assert.assertNotNull(doc);
         resolver.resolve(doc);
