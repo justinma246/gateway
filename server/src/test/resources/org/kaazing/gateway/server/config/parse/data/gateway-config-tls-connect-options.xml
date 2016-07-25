@@ -33,13 +33,13 @@
   <service> 
     <name>proxy</name>
     <accept>wss://localhost:8001</accept>
+    <connect>tls://localhost:8001</connect>
     <type>testService-extension</type>
-    <accept-options>
+    <connect-options>
     	<tls.ciphers>DEFAULT</tls.ciphers>
     	<tls.protocols>TLSv1</tls.protocols>
-    	<tls.encryption>disabled</tls.encryption>
-    	<tls.verify-client>required</tls.verify-client>
-    </accept-options>
+    	<tls.encryption>enabled</tls.encryption>
+    </connect-options>
   </service>
 
   <security>

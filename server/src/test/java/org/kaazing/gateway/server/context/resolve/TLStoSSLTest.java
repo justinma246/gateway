@@ -35,6 +35,8 @@ import org.junit.Test;
 import org.kaazing.gateway.server.test.Gateway;
 import org.kaazing.gateway.server.test.config.GatewayConfiguration;
 import org.kaazing.gateway.server.test.config.builder.GatewayConfigurationBuilder;
+import org.kaazing.gateway.service.ServiceFactory;
+import org.kaazing.gateway.service.echo.EchoService;
 import org.kaazing.gateway.server.config.june2016.GatewayConfigDocument;
 import org.kaazing.gateway.server.config.parse.GatewayConfigParser;
 
@@ -130,6 +132,24 @@ public class TLStoSSLTest {
     
     @Test
     public void parseAndResolveTLSAcceptOptions() throws Exception {
+        configFile = createTempFileFromResource(
+                "org/kaazing/gateway/server/config/parse/data/gateway-config-tls-accept-options.xml");
+        GatewayConfigDocument doc = parser.parse(configFile);
+        Assert.assertNotNull(doc);
+        resolver.resolve(doc);
+    }
+
+    @Test
+    public void parseAndResolveTLSinConnect() throws Exception {
+        configFile = createTempFileFromResource(
+                "org/kaazing/gateway/server/config/parse/data/gateway-config-tls-in-connect.xml");
+        GatewayConfigDocument doc = parser.parse(configFile);
+        Assert.assertNotNull(doc);
+        resolver.resolve(doc);
+    }
+    
+    @Test
+    public void parseAndResolveTLSConnectOptions() throws Exception {
         configFile = createTempFileFromResource(
                 "org/kaazing/gateway/server/config/parse/data/gateway-config-tls-accept-options.xml");
         GatewayConfigDocument doc = parser.parse(configFile);
